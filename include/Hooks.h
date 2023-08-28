@@ -6,15 +6,17 @@ constexpr auto hands_slot{ RE::BGSBipedObjectForm::BipedObjectSlot::kHands };
 constexpr auto feet_slot{ RE::BGSBipedObjectForm::BipedObjectSlot::kFeet };
 constexpr auto remove_reason{ RE::ITEM_REMOVE_REASON::kRemove };
 
-namespace Hooks {
-    void Install();
+namespace Hooks
+{
+    void Install() noexcept;
 
-    class Load3D : public Singleton<Load3D> {
+    class Load3D : public Singleton<Load3D>
+    {
     public:
-        static RE::NiAVObject* Thunk(RE::Character* a_this, bool a_arg1);
+        static RE::NiAVObject* Thunk(RE::Character* a_this, bool a_arg1) noexcept;
 
         inline static REL::Relocation<decltype(&Thunk)> func;
 
         static constexpr std::size_t idx{ 106 };
     };
-}
+} // namespace Hooks
