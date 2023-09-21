@@ -1,6 +1,5 @@
 #include "Hooks.h"
 #include "Logging.h"
-#include "SKSE/Interfaces.h"
 #include "Settings.h"
 
 void Listener(SKSE::MessagingInterface::Message* message) noexcept
