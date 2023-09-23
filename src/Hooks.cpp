@@ -18,7 +18,7 @@ namespace Hooks
         if (!a_this->GetActorBase())
             return result;
 
-        if (a_this->IsPlayerRef() || a_this->IsPlayerTeammate() || a_this->IsChild())
+        if (a_this->IsPlayerRef() || a_this->IsPlayerTeammate() || a_this->IsChild() || !a_this->HasKeywordString("ActorTypeNPC"sv) || a_this->HasKeywordString("ManakinRace"sv))
             return result;
 
         std::jthread([=] {
