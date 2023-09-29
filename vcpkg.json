@@ -1,14 +1,14 @@
 {
   "$schema": "https://raw.githubusercontent.com/microsoft/vcpkg-tool/main/docs/vcpkg.schema.json",
   "name": "naked-dead-npc-fix",
-  "version-semver": "1.0.5",
+  "version-semver": "1.0.6",
   "dependencies": ["commonlibsse-ng", "simpleini"],
   "license": "GPL-3.0-or-later",
   "vcpkg-configuration": {
     "default-registry": {
       "kind": "git",
       "repository": "https://github.com/microsoft/vcpkg",
-      "baseline": "70fd7df7a9e2d3d47ab6bf87fc7347a6c2d06fda"
+      "baseline": "db0473513e5dc73ec6b6f431ff05d2f398eea042"
     },
     "registries": [
       {

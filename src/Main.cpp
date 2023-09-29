@@ -4,8 +4,7 @@
 
 void Listener(SKSE::MessagingInterface::Message* message) noexcept
 {
-    if (message->type <=> SKSE::MessagingInterface::kDataLoaded == 0)
-    {
+    if (message->type <=> SKSE::MessagingInterface::kDataLoaded == 0) {
         Settings::LoadSettings();
         if (GetModuleHandle(L"Underwear"))
             logger::info("Underwear.dll found, disabling self...");
