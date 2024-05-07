@@ -10,31 +10,35 @@ namespace Hooks
 
     RE::NiAVObject* Load3D::Thunk(RE::Character* a_this, bool a_arg1) noexcept
     {
-        const auto result{ func(a_this, a_arg1) };
-
         std::jthread([=] {
             std::this_thread::sleep_for(2s);
             SKSE::GetTaskInterface()->AddTask([=] {
-                if (!a_this)
+                if (!a_this) {
                     return;
+                }
 
-                if (!a_this->GetActorBase())
+                if (!a_this->GetActorBase()) {
                     return;
+                }
 
-                if (a_this->IsPlayerRef() || a_this->IsPlayerTeammate() || a_this->IsChild() || !a_this->HasKeywordString("ActorTypeNPC"sv))
+                if (a_this->IsPlayerRef() || a_this->IsPlayerTeammate() || a_this->IsChild() || !a_this->HasKeywordString("ActorTypeNPC"sv)) {
                     return;
+                }
 
-                if (const auto race{ a_this->GetRace() })
-                    if (!strcmp(race->GetFormEditorID(), "ManakinRace"))
+                if (const auto race{ a_this->GetRace() }) {
+                    if (!strcmp(race->GetFormEditorID(), "ManakinRace")) {
                         return;
+                    }
+                }
 
                 const auto body_worn{ a_this->GetWornArmor(body_slot) };
                 const auto head_worn{ a_this->GetWornArmor(head_slot) };
                 const auto hands_worn{ a_this->GetWornArmor(hands_slot) };
                 const auto feet_worn{ a_this->GetWornArmor(feet_slot) };
 
-                if (body_worn)
+                if (body_worn) {
                     return;
+                }
 
                 const auto actor_name{ a_this->GetName() };
                 const auto actor_form_id{ a_this->GetFormID() };
@@ -61,7 +65,7 @@ namespace Hooks
                             manager->EquipObject(a_this, armo, nullptr, 1, nullptr, true, false, false, false);
                             logger::debug("{} (0x{:x}): Equipped head slot item {} (0x{:x}) found in inventory on 3D load", actor_name, actor_form_id, armo_name, armo_form_id);
                         }
-                        if (armo_slot <=> body_slot == 0 && !body_worn && !body_found) {
+                        if (armo_slot <=> body_slot == 0 && !body_found) {
                             body_found = true;
                             manager->EquipObject(a_this, armo, nullptr, 1, nullptr, true, false, false, false);
                             logger::debug("{} (0x{:x}): Equipped body slot item {} (0x{:x}) found in inventory on 3D load", actor_name, actor_form_id, armo_name, armo_form_id);
@@ -71,6 +75,6 @@ namespace Hooks
             });
         }).detach();
 
-        return result;
+        return func(a_this, a_arg1);
     }
 } // namespace Hooks

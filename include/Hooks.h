@@ -4,7 +4,8 @@ constexpr auto body_slot{ RE::BGSBipedObjectForm::BipedObjectSlot::kBody };
 constexpr auto head_slot{ RE::BGSBipedObjectForm::BipedObjectSlot::kHead };
 constexpr auto hands_slot{ RE::BGSBipedObjectForm::BipedObjectSlot::kHands };
 constexpr auto feet_slot{ RE::BGSBipedObjectForm::BipedObjectSlot::kFeet };
-constexpr auto remove_reason{ RE::ITEM_REMOVE_REASON::kRemove };
+
+// constexpr auto remove_reason{ RE::ITEM_REMOVE_REASON::kRemove };
 
 namespace Hooks
 {
